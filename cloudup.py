@@ -39,17 +39,19 @@ def uploadText():
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     filename = "{}.png".format(os.getpid())
     cv2.imwrite(filename, gray,[int(cv2.IMWRITE_JPEG_QUALITY), 20])
-    print(filename)
+    picture = Image.open(filename)
+    picture.save("Compressed_"+filename,"JPEG",optimize=True,quality=20)
+    #print(filename)
     cloudinary.config(cloud_name="shubhambhattacharya",api_key="442859552564425",api_secret="NAhJuoBcjjfP886c0n2xwvR7jPI")
-    d = cloudinary.uploader.upload(filename)
-    os.remove(filename)
+    d = cloudinary.uploader.upload("Compressed_"+filename)
+    #os.remove(filename)
     print(d['secure_url'])
     payload = {'url':d['secure_url'],'isOverlayRequired': True,'apikey': 'a4924b356c88957','language': 'eng'}
     r = requests.post('https://api.ocr.space/parse/image',data=payload)
     #print (r.json())
     resp = r.json()
     #resp = Response(s, mimetype='application/json')
-    #print(resp)
+    print(resp)
     words = resp['ParsedResults'][0]['TextOverlay']['Lines']
     myWords = []
     for word in words:
@@ -62,7 +64,7 @@ def uploadText():
         googleResp = requests.get('https://www.googleapis.com/customsearch/v1?key='+gKey+'&cx=015528857462049392512:iqcemyfrksa&q='+myWords[0])
     #googleResp = googleResp['items']
     google = googleResp.json()
-    #print(google)
+    print(google)
     items = google['items']
     responseArr = []
     for item in items:

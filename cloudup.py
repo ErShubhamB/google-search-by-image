@@ -44,7 +44,7 @@ def uploadText():
     #print(filename)
     cloudinary.config(cloud_name="shubhambhattacharya",api_key="442859552564425",api_secret="NAhJuoBcjjfP886c0n2xwvR7jPI")
     d = cloudinary.uploader.upload("Compressed_"+filename)
-    #os.remove(filename)
+    os.remove(filename)
     print(d['secure_url'])
     payload = {'url':d['secure_url'],'isOverlayRequired': True,'apikey': 'a4924b356c88957','language': 'eng'}
     r = requests.post('https://api.ocr.space/parse/image',data=payload)

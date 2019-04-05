@@ -33,7 +33,7 @@ def ocr():
 @app.route('/api/upload', methods=['POST'])
 def uploadText():
     #email = request.form['email']
-    gKey = 'AIzaSyDExPzZhp40AhE3mQOXXSeDI5fd_Dto_9g'
+    gKey = 'AIzaSyAjMsPfyNIMRu3XllubMEcR5fPwSGdf-YQ'
     f = request.files['image']
     image = cv2.imdecode(numpy.fromstring(request.files['image'].read(), numpy.uint8), cv2.IMREAD_UNCHANGED)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)

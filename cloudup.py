@@ -57,11 +57,11 @@ def uploadText():
     for word in words:
         myWords.append(word['Words'][0]['WordText'])
     if(len(myWords) >= 3):
-        googleResp = requests.get('https://www.googleapis.com/customsearch/v1?key='+gKey+'&cx=015528857462049392512:iqcemyfrksa&q='+myWords[0]+' '+myWords[1]+' '+myWords[2])
+        googleResp = requests.get('https://www.googleapis.com/customsearch/v1?key='+gKey+'&cx=015528857462049392512:iqcemyfrksa&q='+myWords[0]+' '+myWords[1]+' '+myWords[2]+' vineyards')
     elif(len(myWords) < 3 and len(myWords) >= 2):
-        googleResp = requests.get('https://www.googleapis.com/customsearch/v1?key='+gKey+'&cx=015528857462049392512:iqcemyfrksa&q='+myWords[0]+' '+myWords[1])
+        googleResp = requests.get('https://www.googleapis.com/customsearch/v1?key='+gKey+'&cx=015528857462049392512:iqcemyfrksa&q='+myWords[0]+' '+myWords[1]+' vineyards')
     else:
-        googleResp = requests.get('https://www.googleapis.com/customsearch/v1?key='+gKey+'&cx=015528857462049392512:iqcemyfrksa&q='+myWords[0])
+        googleResp = requests.get('https://www.googleapis.com/customsearch/v1?key='+gKey+'&cx=015528857462049392512:iqcemyfrksa&q='+myWords[0]+' vineyards')
     #googleResp = googleResp['items']
     google = googleResp.json()
     print(google)
